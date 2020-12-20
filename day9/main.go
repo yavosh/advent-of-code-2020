@@ -63,45 +63,15 @@ func findSum(data []int, target int) []int {
 }
 
 func main() {
+	//xmasCipher := advent.LoadInt("./day9/input-test.txt")
+	//depth := 5
+
 	xmasCipher := advent.LoadInt("./day9/input.txt")
 	depth := 25
-	//depth := 5
 	_, nope := solve(xmasCipher, depth)
-	fmt.Printf("nope: %v\n", nope)
-
 	sumOf := nope[0]
-
-	rest := make([]int, 0)
-
-	for _, v := range xmasCipher {
-		if v != sumOf {
-			rest = append(rest, v)
-		}
-	}
-
-	fmt.Printf("sumOf: %d\n", sumOf)
 	res := findSum(xmasCipher, sumOf)
-	fmt.Printf("res:%v\n", res)
-
-	smallest := sumOf + 1
-	largest := 0
-
-	for _, v := range res {
-
-		if v < smallest {
-			smallest = v
-		}
-
-		if v > largest {
-			largest = v
-		}
-
-	}
-
-	fmt.Printf("smallest:%v\n", smallest)
-	fmt.Printf("largest:%v\n", largest)
-
 	sort.Ints(res)
-	fmt.Printf("res:%v\n", res)
-	fmt.Printf("weakness:%v\n", smallest+largest)
+	fmt.Printf("sumof:%d res:%v\n", sumOf, res)
+	fmt.Printf("weakness:%v\n", res[0]+res[len(res)-1])
 }
