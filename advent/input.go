@@ -13,10 +13,19 @@ func Load(f string) []string {
 		fmt.Printf("Error: %v", err)
 		return []string{}
 	}
+
+	if len(data) == 0 {
+		return []string{}
+	}
+
 	lines := strings.Split(string(data), "\n")
 
 	for i := range lines {
-		lines[i] = strings.TrimSpace(lines[i])
+		l := strings.TrimSpace(lines[i])
+		if l == "" {
+			continue
+		}
+		lines[i] = l
 	}
 
 	return lines
